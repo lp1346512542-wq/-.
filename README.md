@@ -1,1 +1,47 @@
-itms-services://?action=download-manifest&url=https://www.123684.com/s/c7kujv-B9o0v/manifest.plist 
+version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>assets</key>
+			<array>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+					<string>http:https://www.123684.com/s/c7kujv-J9o0v</string>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>full-size-image</string>
+					<key>needs-shine</key>
+					<true/>
+					<key>url</key>
+					<string>https://www.minbox.com.cn/zb_users/upload/2023/07/202307311690748775415834.png</string>
+				</dict>
+				<dict>
+					<key>kind</key>
+					<string>display-image</string>
+					<key>needs-shine</key>
+					<true/>
+					<key>url</key>
+					<string>https://www.minbox.com.cn/zb_users/upload/2023/07/202307311690748775415834.png</string>
+				</dict>
+			</array>
+			<key>metadata</key>
+			<dict>
+				<key>bundle-identifier</key>
+				<string>com.iwall.bizhi</string>
+				<key>bundle-version</key>
+				<string>4.4.2</string>
+				<key>kind</key>
+				<string>software</string>
+				<key>title</key>
+				<string>最美壁纸</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
