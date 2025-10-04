@@ -11,7 +11,7 @@ version="1.0" encoding="UTF-8"?>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://drive.google.com/file/d/1Yi20f2iVna2QnBfXkkJ9JE_RFx6O4kF9/view?usp=share_link</string>
+					<string>https://workdrive.zohopublic.com.cn/file/kpgnr747b963d9e4c41e884726fc06ff82749</string>
 				</dict>
 			</array>
 			<key>metadata</key>
