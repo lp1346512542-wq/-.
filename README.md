@@ -11,7 +11,7 @@ version="1.0" encoding="UTF-8"?>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>http:https://www.123684.com/s/c7kujv-J9o0v</string>
+					<string>http:https://https://1drv.ms/u/c/2384fc07f030589f/EeIkSOvIeulCtcthulzP6UkBnsAw412Xo9mQkauOX7m8Pg?e=F3rVee<string>
 				</dict>
 				<dict>
 					<key>kind</key>
