@@ -11,23 +11,7 @@ version="1.0" encoding="UTF-8"?>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>http:https://https://1drv.ms/u/c/2384fc07f030589f/EeIkSOvIeulCtcthulzP6UkBnsAw412Xo9mQkauOX7m8Pg?e=F3rVee<string>
-				</dict>
-				<dict>
-					<key>kind</key>
-					<string>full-size-image</string>
-					<key>needs-shine</key>
-					<true/>
-					<key>url</key>
-					<string>https://www.minbox.com.cn/zb_users/upload/2023/07/202307311690748775415834.png</string>
-				</dict>
-				<dict>
-					<key>kind</key>
-					<string>display-image</string>
-					<key>needs-shine</key>
-					<true/>
-					<key>url</key>
-					<string>https://www.minbox.com.cn/zb_users/upload/2023/07/202307311690748775415834.png</string>
+					<string>https://1drv.ms/u/c/2384fc07f030589f/EeIkSOvIeulCtcthulzP6UkBnsAw412Xo9mQkauOX7m8Pg?e=F3rVee</string>
 				</dict>
 			</array>
 			<key>metadata</key>
