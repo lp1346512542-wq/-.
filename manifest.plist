@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>items</key>
+  <array>
+    <dict>
+      <key>assets</key>
+      <array>
+        <dict>
+          <key>kind</key>
+          <string>software-package</string>
+          <key>url</key>
+          <string>https://123-184-221-182.pd1.cjjd19.com/1135-user-other-pay-download-cdn.123295.com/123-498/2180c855/1814614361-0/2180c85583ab5949cd884b06a03451f2/c-m95?v=5&t=1771954627&r=LNL2NB&bzc=1&bzs=313832373737383833363a323a313a33353239313838393436&ur=vpagvumgvuigvev&urn=0&s=17719546277baa9489f5ef4046fa1a758f1ce8fc62&bzp=0&bi=2374056013&filename=PUBG+GRSM+S1_4.2.0_全球.ipa&x-mf-biz-cid=352c6109-dbc7-4abd-b2cb-76822d9abf86-08139d&auto_redirect=0&ndcp=1&cache_type=1</string>
+        </dict>
+        <dict>
+          <key>kind</key>
+          <string>display-image</string>
+          <string>https://picsum.photos/120/120</string>
+        </dict>
+      </array>
+      <key>metadata</key>
+      <dict>
+        <key>bundle-identifier</key>
+        <string>com.pubg.global</string>
+        <key>bundle-version</key>
+        <string>4.2.0</string>
+        <key>kind</key>
+        <string>software</string>
+        <key>title</key>
+        <string>PUBG GRSM S1</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>
