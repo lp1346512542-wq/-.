@@ -11,13 +11,13 @@
                     <key>kind</key>
                     <string>software-package</string>
                     <key>url</key>
-                    <string>https://hcyykj-eos-hhht5-01.eos.yun.139.com/475d0039347540e4a92d993d47473940086?response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27PUBG%2520MOBILE_4.2.0_%25E5%2585%25A8%25E7%2590%2583S3F.ipa&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20260222T190255Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=900&amp;X-Amz-Credential=JX8QMYUJCVXX3YB0PN5Y%2F20260222%2Fdefault%2Fs3%2Faws4_request&amp;t=2&amp;u=1039892224668508367&amp;ot=personal&amp;oi=1039892224668508367&amp;f=Fqly80iEbJaodAcGGsMNLpLm_JoERmzeq&amp;ext=eyJ1dCI6M30%3D&amp;X-Amz-Signature=a538edb77dd0467b67ff2a83eb5b2293f523472204cc962afe3095c4b8dacbfe</string>
+                    <string>https://dl-app.feejii.com/storage/files/2026/02/22/3/5020167223/1771770065544140.gz?t=699b79bc&amp;rlimit=20&amp;us=tU2ZjJOOQB&amp;sign=f84b09055cddaee2dfc8efdd0f0bdeee&amp;download_name=PUBG%20MOBILE_4.2.0_%E5%85%A8%E7%90%83S3F.ipa&amp;p=8504924-8504924-33652864551</string>
                 </dict>
             </array>
             <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.tencent.tmgp.pubgmhd</string>
+                <string>com.tencent.ig6</string>
                 <key>bundle-version</key>
                 <string>4.2.0</string>
                 <key>kind</key>
