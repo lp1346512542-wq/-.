@@ -1,1 +1,279 @@
-itms-services://?action=download-manifest&url=https://https://lp1346512542-wq.github.io/-/manifest.plist
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CORT工作室 · 科技分发</title>
+    <style>
+        /* 全局科技感风格：深色背景 + 霓虹蓝紫光效 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #0a0f1e, #03050c);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 动态网格背景 */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 浮动光点 */
+        .glow-spot {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 180, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            animation: float 15s infinite alternate ease-in-out;
+        }
+
+        .glow-spot-2 {
+            top: 60%;
+            right: 5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(150, 0, 255, 0.1) 0%, transparent 70%);
+            animation-duration: 20s;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-50px, -30px) scale(1.1); }
+        }
+
+        /* 主卡片 */
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 520px;
+            background: rgba(12, 20, 35, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 42px;
+            padding: 40px 30px 50px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(0, 255, 255, 0.1) inset, 0 0 40px rgba(0, 180, 255, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            border-color: rgba(0, 255, 255, 0.7);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), 0 0 0 3px rgba(0, 255, 255, 0.3) inset, 0 0 60px #00ccff80;
+        }
+
+        /* 标题区域 */
+        .studio-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #aaffff, #4affff, #a080ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px #00ffff, 0 0 45px #0044ff;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            filter: drop-shadow(0 0 8px cyan);
+        }
+
+        .subtitle {
+            color: #9bbdff;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            word-spacing: 6px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-bottom: 1px dashed #2f4f7f;
+            padding-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* 应用图标占位符（科技感边框） */
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 30px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00ffff;
+            box-shadow: 0 0 30px cyan, 0 0 0 4px #0a1424 inset;
+            backdrop-filter: blur(5px);
+        }
+
+        .app-icon span {
+            transform: rotate(10deg);
+            text-shadow: 0 0 15px blue;
+        }
+
+        /* 应用名称 */
+        .app-name {
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 0 20px cyan;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .version {
+            color: #aaccff;
+            font-size: 1rem;
+            background: rgba(0, 255, 255, 0.08);
+            padding: 6px 16px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 1px solid #00ffff40;
+            margin-bottom: 35px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 下载按钮 - 核心交互 */
+        .install-btn {
+            display: inline-block;
+            background: linear-gradient(145deg, #00ddff, #0066ff);
+            border: none;
+            padding: 18px 50px;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #010314;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            box-shadow: 0 0 25px #00a6ff, 0 8px 0 #002288, 0 15px 30px black;
+            transition: all 0.1s ease;
+            border: 1px solid #8ad4ff;
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+        }
+
+        .install-btn:active {
+            transform: translateY(7px);
+            box-shadow: 0 0 35px #00ffff, 0 4px 0 #001166, 0 10px 20px black;
+        }
+
+        /* 提示文字 */
+        .hint {
+            color: #6f8fc0;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-top: 1px solid #1f3f5f;
+            padding-top: 25px;
+        }
+
+        .hint i {
+            font-style: normal;
+            color: #00ffff;
+            font-size: 1.2rem;
+        }
+
+        /* 底部装饰线 */
+        .scan-line {
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, cyan, magenta, transparent);
+            margin: 30px auto 10px;
+            opacity: 0.5;
+        }
+
+        /* 适配手机 */
+        @media (max-width: 480px) {
+            .card { padding: 30px 20px; border-radius: 32px; }
+            .studio-name { font-size: 2.2rem; }
+            .install-btn { font-size: 1.3rem; padding: 16px 30px; }
+            .app-icon { width: 80px; height: 80px; font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态光晕背景 -->
+    <div class="glow-spot" style="top: 5%; left: 5%;"></div>
+    <div class="glow-spot glow-spot-2"></div>
+
+    <!-- 主卡片 -->
+    <div class="card">
+        <!-- 工作室标题 -->
+        <div class="studio-name">CORT 工作室</div>
+        <div class="subtitle">✦ 未来科技 · 安全分发 ✦</div>
+
+        <!-- 模拟应用图标（可替换为真实图标） -->
+        <div class="app-icon">
+            <span>▶</span>
+        </div>
+
+        <!-- 应用信息（根据您的描述为 PUBG MOBILE） -->
+        <div class="app-name">PUBG MOBILE</div>
+        <div class="version">版本 4.2.0 · 全球S3F</div>
+
+        <!-- 下载按钮：点击后通过 itms-services 安装 
+             请将 URL 替换为您的 manifest.plist 的完整 raw 链接！ -->
+        <a class="install-btn" 
+           href="itms-services://?action=download-manifest&url=https://lp1346512542-wq.github.io/-.//manifest.plist"
+           onclick="alert('如果系统没有自动弹出安装提示，请确保您使用 Safari 浏览器，且已信任企业证书。')">
+            ⚡ 立即安装 ⚡
+        </a>
+
+        <!-- 安装提示 -->
+        <div class="hint">
+            <i>⚠️</i> 请在 Safari 中打开本页面，点击按钮后按提示允许安装
+        </div>
+
+        <!-- 科技感线条 -->
+        <div class="scan-line"></div>
+        <div style="color: #3b5f8f; font-size: 0.75rem; letter-spacing: 1px; margin-top: 5px;">
+            SECURE · OTA · CYBER
+        </div>
+    </div>
+
+    <!-- 可选：增加点击时的二次确认（针对 iOS 限制） -->
+    <script>
+        document.querySelector('.install-btn').addEventListener('click', function(e) {
+            // 可以在这里添加自定义统计或提示
+            console.log('安装按钮已点击，尝试唤起 itms-services');
+        });
+    </script>
+</body>
+</html>
