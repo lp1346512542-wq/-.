@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>CORT工作室 · 科技分发</title>
     <style>
         /* 全局科技感风格：深色背景 + 霓虹蓝紫光效 */
@@ -64,6 +66,12 @@
             100% { transform: translate(-50px, -30px) scale(1.1); }
         }
 
+        /* 扫描线动画 */
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 200px; }
+        }
+
         /* 主卡片 */
         .card {
             position: relative;
@@ -115,7 +123,7 @@
             display: inline-block;
         }
 
-        /* 应用图标占位符（科技感边框） */
+        /* 应用图标 */
         .app-icon {
             width: 100px;
             height: 100px;
@@ -131,11 +139,19 @@
             color: #00ffff;
             box-shadow: 0 0 30px cyan, 0 0 0 4px #0a1424 inset;
             backdrop-filter: blur(5px);
+            overflow: hidden;
         }
 
         .app-icon span {
             transform: rotate(10deg);
             text-shadow: 0 0 15px blue;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 28px;
         }
 
         /* 应用名称 */
@@ -184,6 +200,7 @@
             cursor: pointer;
             position: relative;
             z-index: 20;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .install-btn:active {
@@ -191,11 +208,90 @@
             box-shadow: 0 0 35px #00ffff, 0 4px 0 #001166, 0 10px 20px black;
         }
 
+        .install-btn.disabled {
+            background: #333;
+            box-shadow: none;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* 浏览器提示弹窗 */
+        .browser-tip {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid #ff3366;
+            border-radius: 20px;
+            padding: 30px 25px;
+            z-index: 999;
+            max-width: 90%;
+            width: 400px;
+            display: none;
+        }
+
+        .browser-tip.show {
+            display: block;
+        }
+
+        .browser-tip h3 {
+            color: #ff3366;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .browser-tip p {
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .browser-tip .close-btn {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* 安装步骤 */
+        .steps {
+            text-align: left;
+            background: rgba(0, 180, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .steps h4 {
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .steps ol {
+            padding-left: 20px;
+            color: #9bbdff;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .steps li {
+            margin-bottom: 8px;
+        }
+
         /* 提示文字 */
         .hint {
             color: #6f8fc0;
             font-size: 0.85rem;
-            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -217,14 +313,17 @@
             background: linear-gradient(90deg, transparent, cyan, magenta, transparent);
             margin: 30px auto 10px;
             opacity: 0.5;
+            animation: scan 2s linear infinite;
+            background-size: 100% 200px;
         }
 
         /* 适配手机 */
         @media (max-width: 480px) {
             .card { padding: 30px 20px; border-radius: 32px; }
-            .studio-name { font-size: 2.2rem; }
+            .studio-name { font-size: 2.2rem; letter-spacing: 2px; }
             .install-btn { font-size: 1.3rem; padding: 16px 30px; }
             .app-icon { width: 80px; height: 80px; font-size: 2.5rem; }
+            .steps { padding: 15px; }
         }
     </style>
 </head>
@@ -233,34 +332,51 @@
     <div class="glow-spot" style="top: 5%; left: 5%;"></div>
     <div class="glow-spot glow-spot-2"></div>
 
+    <!-- 浏览器不兼容提示弹窗 -->
+    <div class="browser-tip" id="browserTip">
+        <h3>浏览器不兼容</h3>
+        <p>iOS应用OTA安装仅支持Safari浏览器，请点击右上角「···」，选择「在Safari中打开」后重试。</p>
+        <button class="close-btn" onclick="document.getElementById('browserTip').classList.remove('show')">我知道了</button>
+    </div>
+
     <!-- 主卡片 -->
     <div class="card">
         <!-- 工作室标题 -->
         <div class="studio-name">CORT 工作室</div>
         <div class="subtitle">✦ 未来科技 · 安全分发 ✦</div>
 
-        <!-- 模拟应用图标（可替换为真实图标） -->
+        <!-- 应用图标（可替换为真实图标img标签） -->
         <div class="app-icon">
             <span>▶</span>
+            <!-- 替换真实图标示例：<img src="你的图标HTTPS链接" alt="PUBG MOBILE"> -->
         </div>
 
-        <!-- 应用信息（根据您的描述为 PUBG MOBILE） -->
+        <!-- 应用信息 -->
         <div class="app-name">PUBG MOBILE</div>
         <div class="version">版本 4.2.0 · 全球S3F</div>
 
-        <!-- 下载按钮：点击后通过 itms-services 安装 
-             请将 URL 替换为您的 manifest.plist 的完整 raw 链接！ -->
-        <a class="install-btn" 
-           href="itms-services://?action=download-manifest&url=https://lp1346512542-wq.github.io/-.//manifest.plist"
-           onclick="alert('如果系统没有自动弹出安装提示，请确保您使用 Safari 浏览器，且已信任企业证书。')">
+        <!-- 安装步骤引导 -->
+        <div class="steps">
+            <h4>📱 安装必读步骤</h4>
+            <ol>
+                <li>确保当前使用iOS自带Safari浏览器打开本页</li>
+                <li>点击「立即安装」，等待桌面出现应用图标</li>
+                <li>安装完成后，打开 设置 → 通用 → VPN与设备管理</li>
+                <li>找到对应企业开发者，点击「信任」即可正常使用</li>
+            </ol>
+        </div>
+
+        <!-- 下载按钮：请替换为你的manifest.plist完整HTTPS链接 -->
+        <a class="install-btn" id="installBtn"
+           href="itms-services://?action=download-manifest&url=https://lp1346512542-wq.github.io/-./manifest.plist">
             ⚡ 立即安装 ⚡
         </a>
 
-        <!-- 安装提示 -->
+        <!-- 提示文字 -->
         <div class="hint">
-            <i>⚠️</i> 请在 Safari 中打开本页面，点击按钮后按提示允许安装
+            <i>⚠</i>
+            <span>全程保持网络通畅，请勿锁屏或关闭Safari</span>
         </div>
-
         <!-- 科技感线条 -->
         <div class="scan-line"></div>
         <div style="color: #3b5f8f; font-size: 0.75rem; letter-spacing: 1px; margin-top: 5px;">
@@ -268,11 +384,26 @@
         </div>
     </div>
 
-    <!-- 可选：增加点击时的二次确认（针对 iOS 限制） -->
     <script>
-        document.querySelector('.install-btn').addEventListener('click', function(e) {
-            // 可以在这里添加自定义统计或提示
-            console.log('安装按钮已点击，尝试唤起 itms-services');
+        // 浏览器兼容检测
+        const installBtn = document.getElementById('installBtn');
+        const browserTip = document.getElementById('browserTip');
+        const ua = navigator.userAgent.toLowerCase();
+        const isIOS = /iphone|ipad|ipod/.test(ua);
+        const isSafari = isIOS && /safari/.test(ua) && !/crios|fxios|qqbrowser|micromessenger/.test(ua);
+
+        // 非Safari浏览器禁用按钮并弹出提示
+        if (!isSafari) {
+            installBtn.classList.add('disabled');
+            installBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                browserTip.classList.add('show');
+            });
+        }
+
+        // 安装按钮点击统计
+        installBtn.addEventListener('click', function() {
+            console.log('安装按钮已点击，唤起itms-services协议');
         });
     </script>
 </body>
